@@ -14,14 +14,27 @@ import lombok.NonNull;
 public class TeamMember {
 
     /**
+     * Expected constructor
+     * 
+     * @param name
+     * @param email
+     * @param phone
+     */
+    public TeamMember(@NonNull String name, @NonNull String email, @NonNull String phone) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    /**
      * Copy constructor
      *
      * @param c the customer to copy
      */
     public TeamMember(final TeamMember c) {
-        name = c.name;
-        email = c.email;
-        phone = c.phone;
+        this(c.getName(), c.getEmail(), c.getPhone());
+        this.setLongevity(c.getLongevity());
+        this.setSupervisor(c.getSupervisor());
     }
 
     @NonNull
@@ -32,6 +45,12 @@ public class TeamMember {
 
     @NonNull
     private String phone = "";
+
+    @NonNull
+    private Integer longevity = 0;
+
+    // @Nullable
+    private TeamMember supervisor = EMPTY_TEAM_MEMBER;
 
     @Override
     public boolean equals(final Object obj) {
@@ -47,7 +66,26 @@ public class TeamMember {
     }
 
     @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("TeamMember [name=");
+        builder.append(name);
+        builder.append(", email=");
+        builder.append(email);
+        builder.append(", phone=");
+        builder.append(phone);
+        builder.append("]");
+        return builder.toString();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(email, name, phone);
     }
+
+    public final boolean isEmpty() {
+        return this.equals(EMPTY_TEAM_MEMBER);
+    }
+
+    public static final TeamMember EMPTY_TEAM_MEMBER = new TeamMember("", "", "", 0, null);
 }

@@ -86,6 +86,6 @@ class TeamMemberTest {
 
     @Test
     void testToString() {
-        assertEquals("TeamMember(name=a, email=b, phone=c)", c1.toString());
+        assertEquals("TeamMember [name=a, email=b, phone=c]", c1.toString());
     }
 }
