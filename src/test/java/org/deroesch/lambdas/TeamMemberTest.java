@@ -1,10 +1,12 @@
 package org.deroesch.lambdas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.deroesch.lambdas.models.TeamMember;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,6 +31,9 @@ class TeamMemberTest {
     void testCreated() {
         assertNotNull(c1);
         assertNotNull(c2);
+
+        assertTrue(TeamMember.EMPTY.isEmpty());
+        assertFalse(c1.isEmpty());
     }
 
     @Test
@@ -43,6 +48,13 @@ class TeamMemberTest {
 
         assertThrows(NPE, () -> {
             new TeamMember("", "", null);
+        });
+    }
+
+    @Test
+    void testSetter() {
+        assertThrows(NPE, () -> {
+            c1.setLongevity(null);
         });
     }
 

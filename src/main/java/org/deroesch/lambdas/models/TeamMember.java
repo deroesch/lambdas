@@ -2,7 +2,6 @@ package org.deroesch.lambdas.models;
 
 import java.util.Objects;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -10,7 +9,6 @@ import lombok.NonNull;
  * A simple customer
  */
 @Data
-@AllArgsConstructor
 public class TeamMember {
 
     /**
@@ -50,7 +48,7 @@ public class TeamMember {
     private Integer longevity = 0;
 
     // @Nullable
-    private TeamMember supervisor = EMPTY_TEAM_MEMBER;
+    private TeamMember supervisor = EMPTY;
 
     @Override
     public boolean equals(final Object obj) {
@@ -84,8 +82,8 @@ public class TeamMember {
     }
 
     public final boolean isEmpty() {
-        return this.equals(EMPTY_TEAM_MEMBER);
+        return this.equals(EMPTY);
     }
 
-    public static final TeamMember EMPTY_TEAM_MEMBER = new TeamMember("", "", "", 0, null);
+    public static final TeamMember EMPTY = new TeamMember("", "", "");
 }
