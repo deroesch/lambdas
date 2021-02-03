@@ -11,14 +11,14 @@ import lombok.NonNull;
  */
 @Data
 @AllArgsConstructor
-public class Customer {
+public class TeamMember {
 
     /**
      * Copy constructor
      *
      * @param c the customer to copy
      */
-    public Customer(final Customer c) {
+    public TeamMember(final TeamMember c) {
         name = c.name;
         email = c.email;
         phone = c.phone;
@@ -38,10 +38,10 @@ public class Customer {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Customer)) {
+        if (!(obj instanceof TeamMember)) {
             return false;
         }
-        final Customer other = (Customer) obj;
+        final TeamMember other = (TeamMember) obj;
         return Objects.equals(email, other.email) && Objects.equals(name, other.name)
                 && Objects.equals(phone, other.phone);
     }

@@ -6,23 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.deroesch.lambdas.models.Customer;
+import org.deroesch.lambdas.models.TeamMember;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
-class CustomerTest {
+class TeamMemberTest {
 
-    Customer c1;
-    Customer c2;
+    TeamMember c1;
+    TeamMember c2;
     private static final Class<NullPointerException> NPE = NullPointerException.class;
 
     @BeforeEach
     void beforeEach() {
-        c1 = new Customer("a", "b", "c");
-        c2 = new Customer(c1);
+        c1 = new TeamMember("a", "b", "c");
+        c2 = new TeamMember(c1);
     }
 
     @Test
@@ -34,15 +34,15 @@ class CustomerTest {
     @Test
     void testConstructor() {
         assertThrows(NPE, () -> {
-            new Customer(null, "", "");
+            new TeamMember(null, "", "");
         });
 
         assertThrows(NPE, () -> {
-            new Customer("", null, "");
+            new TeamMember("", null, "");
         });
 
         assertThrows(NPE, () -> {
-            new Customer("", "", null);
+            new TeamMember("", "", null);
         });
     }
 
@@ -53,19 +53,19 @@ class CustomerTest {
         assertEquals(c1, c2);
         assertNotEquals(c1, new Object());
 
-        Customer c3 = new Customer(c1);
+        TeamMember c3 = new TeamMember(c1);
         c3.setName("foo");
         assertNotEquals(c1, c3);
 
-        c3 = new Customer(c1);
+        c3 = new TeamMember(c1);
         c3.setEmail("foo");
         assertNotEquals(c1, c3);
 
-        c3 = new Customer(c1);
+        c3 = new TeamMember(c1);
         c3.setPhone("foo");
         assertNotEquals(c1, c3);
 
-        final Customer c4 = new Customer(c1);
+        final TeamMember c4 = new TeamMember(c1);
         assertThrows(NPE, () -> {
             c4.setName(null);
         });
@@ -86,6 +86,6 @@ class CustomerTest {
 
     @Test
     void testToString() {
-        assertEquals("Customer(name=a, email=b, phone=c)", c1.toString());
+        assertEquals("TeamMember(name=a, email=b, phone=c)", c1.toString());
     }
 }
