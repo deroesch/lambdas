@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.function.Supplier;
+
 import org.junit.jupiter.api.Test;
 
 class StateTest {
+
+    private static final Supplier<? extends IllegalArgumentException> ILLEGAL_ARG = IllegalArgumentException::new;
 
     @Test
     void testEquality() {
@@ -23,11 +27,11 @@ class StateTest {
 
     @Test
     void testGetOne() {
-        assertEquals(State.PA, State.getOne("Pennsylvania").orElseThrow(IllegalArgumentException::new));
-        assertEquals("PA", State.getOne("Pennsylvania").orElseThrow(IllegalArgumentException::new).shortName());
+        assertEquals(State.PA, State.getOne("Pennsylvania").orElseThrow(ILLEGAL_ARG));
+        assertEquals("PA", State.getOne("Pennsylvania").orElseThrow(ILLEGAL_ARG).shortName());
 
         assertThrows(IllegalArgumentException.class, () -> {
-            State.getOne("Foobar").orElseThrow(IllegalArgumentException::new);
+            State.getOne("Foobar").orElseThrow(ILLEGAL_ARG);
         });
     }
 
