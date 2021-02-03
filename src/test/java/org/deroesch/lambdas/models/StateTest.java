@@ -3,7 +3,7 @@ package org.deroesch.lambdas.models;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +22,13 @@ class StateTest {
     }
 
     @Test
-    void testGetStates() {
-        assertTrue(State.getAll().containsKey("Pennsylvania"));
-        assertEquals(State.PA, State.getAll().get("Pennsylvania"));
-        assertEquals("PA", State.getAll().get("Pennsylvania").shortName());
+    void testGetOne() {
+        assertEquals(State.PA, State.getOne("Pennsylvania").orElseThrow(IllegalArgumentException::new));
+        assertEquals("PA", State.getOne("Pennsylvania").orElseThrow(IllegalArgumentException::new).shortName());
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            State.getOne("Foobar").orElseThrow(IllegalArgumentException::new);
+        });
     }
 
 }

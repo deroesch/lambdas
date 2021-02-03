@@ -3,6 +3,7 @@ package org.deroesch.lambdas.models;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import lombok.NonNull;
 
@@ -27,8 +28,18 @@ public enum State {
     /**
      * @return the states as a map
      */
-    public static Map<String, State> getAll() {
+    private static Map<String, State> getAll() {
         return Collections.unmodifiableMap(stateMap);
+    }
+
+    /**
+     * Find one state given it's longName
+     * 
+     * @param longName
+     * @return
+     */
+    public static Optional<State> getOne(@NonNull String longName) {
+        return Optional.ofNullable(getAll().get(longName));
     }
 
     static {
