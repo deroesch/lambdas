@@ -19,6 +19,8 @@ class TeamMemberTest {
 
     TeamMember c1;
     TeamMember c2;
+
+    @SuppressWarnings("null")
     private static final Class<NullPointerException> NPE = NullPointerException.class;
 
     @BeforeEach
