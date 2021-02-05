@@ -1,5 +1,6 @@
 package org.deroesch.lambdas.models;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -61,10 +62,8 @@ class TeamMemberTest {
 
     @Test
     void testEquals() {
-        assertSame(c1, c1);
-        assertEquals(c1, c1);
-        assertEquals(c1, c2);
-        assertNotEquals(c1, new Object());
+        assertAll(() -> assertSame(c1, c1), () -> assertEquals(c1, c1), () -> assertEquals(c1, c2),
+                () -> assertNotEquals(c1, new Object()));
 
         TeamMember c3 = new TeamMember(c1);
         c3.setName("foo");
