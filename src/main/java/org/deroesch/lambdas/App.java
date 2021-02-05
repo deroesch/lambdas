@@ -18,6 +18,7 @@ public class App {
     final TeamMember alice = new TeamMember("alice", "alice@example.com", "412-555-1111");
     final TeamMember bob = new TeamMember("bob", "bob@example.com", "412-555-2222");
     final TeamMember charlie = new TeamMember("charlie", "charlie@example.com", "412-555-3333");
+    final TeamMember dan = new TeamMember("dan", "dan@example.com", "412-555-4444");
 
     public void main(final String[] args) {
         log.info("Starting!");

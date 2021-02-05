@@ -10,11 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
+@DisplayName("A TeamMember should ")
 class TeamMemberTest {
 
     TeamMember c1;
@@ -30,6 +32,7 @@ class TeamMemberTest {
     }
 
     @Test
+    @DisplayName("never be empty.")
     void testCreated() {
         assertNotNull(c1);
         assertNotNull(c2);
@@ -39,6 +42,7 @@ class TeamMemberTest {
     }
 
     @Test
+    @DisplayName("throw NPEs when constructors have null arguments.")
     void testConstructor() {
         assertThrows(NPE, () -> {
             new TeamMember(null, "", "");
@@ -54,6 +58,7 @@ class TeamMemberTest {
     }
 
     @Test
+    @DisplayName("have a settable longevity.")
     void testSetter() {
         assertThrows(NPE, () -> {
             c1.setLongevity(null);
@@ -61,6 +66,7 @@ class TeamMemberTest {
     }
 
     @Test
+    @DisplayName("have a well-behaved equals() method.")
     void testEquals() {
         assertAll(() -> assertSame(c1, c1), () -> assertEquals(c1, c1), () -> assertEquals(c1, c2),
                 () -> assertNotEquals(c1, new Object()));
@@ -76,6 +82,11 @@ class TeamMemberTest {
         c3 = new TeamMember(c1);
         c3.setPhone("foo");
         assertNotEquals(c1, c3);
+    }
+
+    @Test
+    @DisplayName("throw NPEs when setters have null arguments.")
+    void testSetters() {
 
         final TeamMember c4 = new TeamMember(c1);
         assertThrows(NPE, () -> {
@@ -91,11 +102,13 @@ class TeamMemberTest {
         });
     }
 
+    @DisplayName("have equal() hash codes if their instances are equals().")
     @Test
     void testHashCode() {
         assertEquals(c1.hashCode(), c2.hashCode());
     }
 
+    @DisplayName("be printable as a human-readable string.")
     @Test
     void testToString() {
         assertEquals("TeamMember [name=a, email=b, phone=c]", c1.toString());
